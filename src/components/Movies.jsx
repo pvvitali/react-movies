@@ -22,11 +22,14 @@ class Movies extends React.Component {
     componentDidMount() {
         if ( this.isFirstFetch ) {
 
-            fetch(`http://www.omdbapi.com/?apikey=${API_KEY}&s=matrix`)
+            fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=matrix`)
                 .then( (responce) =>  responce.json() )
                     .then( (mas) =>  {
                         this.setState({ movies: mas["Search"]})
-                    }  );
+                    }  )
+                    .catch( (err) => {
+                        console.error(err);
+                    });
 
             console.log('componentDidMount and run fetch');
 
@@ -43,7 +46,7 @@ class Movies extends React.Component {
         if (type === 'movie') typeString = '&type=movie';
         if (type === 'series') typeString = '&type=series';
 
-        fetch( `http://www.omdbapi.com/?apikey=${API_KEY}&s=${search}${typeString}` )
+        fetch( `https://www.omdbapi.com/?apikey=${API_KEY}&s=${search}${typeString}` )
             .then( (responce) =>  responce.json() )
                 .then( (mas) =>  {
                     if ( mas["Search"] ) this.setState({ movies: mas["Search"]});
@@ -53,7 +56,10 @@ class Movies extends React.Component {
                                                     Type: "",
                                                     Year: "" } ] } );
                     
-                }  );
+                }  )
+                .catch( (err) => {
+                    console.error(err);
+                } );
     }
 
     getType = (typeName) => {
