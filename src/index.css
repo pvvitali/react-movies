@@ -7,7 +7,25 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+nav {
+  padding: 0 2.5rem;
+}
+
+.content {
+  min-height: calc(100vh - 64px - 248px);
+}
+
+.movies {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.button-search {
+  margin-top: 25px;
+  margin-left: 25px;
+}
+
+.radio {
+  margin-left: 150px;
 }
